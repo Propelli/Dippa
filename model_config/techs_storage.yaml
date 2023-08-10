@@ -1,0 +1,142 @@
+##
+# TECHNOLOGY DEFINITIONS
+##
+
+
+
+techs:
+
+##-GRID SUPPLY-##
+    # supply-start
+ 
+    batteryLI:
+        essentials:
+            name: 'Battery storage'
+            color: '#053F5C'
+            parent: storage
+            carrier: electricity
+        constraints:
+            energy_cap_max: 5000000  # kW
+            storage_initial: 0.3
+            storage_cap_max: inf
+            energy_cap_per_storage_cap_max: 0.25
+            energy_eff: 0.86  # 0.95 * 0.95 = 0.9025 round trip efficiency
+            storage_loss: 0  # No loss over time assumed
+            lifetime: 10
+            storage_discharge_depth: 0.2
+
+        costs:
+            monetary:
+                interest_rate: 0.10
+                storage_cap: 362  # https://energystorage.pnnl.gov/pdf/PNNL-28866.pdf
+                export: file=electricity_price_2022.csv:sell
+                om_annual: 8
+                om_prod: 0.0003
+
+
+
+    batteryHEAT:            #https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Nov/IRENA_Innovation_Outlook_TES_2020.pdf
+        essentials:
+            name: 'Heat storage'
+            color: '#F6BD60'
+            parent: storage
+            carrier: heat
+        constraints:
+            energy_cap_max: 500000  # kW
+            storage_cap_max: 5000000
+            storage_initial: 0.3
+            energy_cap_per_storage_cap_max: 0.1
+            energy_eff: 0.95  # 0.95 * 0.95 = 0.9025 round trip efficiency
+            storage_loss: 0  # No loss over time assumed
+            lifetime: 25
+        costs:
+            monetary:
+                interest_rate: 0.10
+                storage_cap: 9.14 # https://www-sciencedirect-com.ezproxy.cc.lut.fi/science/article/pii/S096014812200338X
+                export: -0.0898
+
+    hydrogen_storage:
+        essentials:
+            name: 'Hydrogen storage'
+            color: '#2cc7af'
+            parent: storage
+            carrier: hydrogen
+        constraints:
+            energy_cap_max: inf  # kW
+            storage_initial: 0.3
+            storage_cap_max: 20000000 # kwh
+            energy_cap_per_storage_cap_max: 0.25
+            energy_eff: 1  # 0.95 * 0.95 = 0.9025 round trip efficiency
+            storage_loss: 0  # No loss over time assumed
+            lifetime: 25
+        costs:
+            monetary:
+                interest_rate: 0.10
+                storage_cap: 20  # EUR per kWh hydrogen storage capacity
+                export: -0.129
+
+    LAES:
+        essentials:
+            name: 'LAES'
+            color: '#429EBD'
+            parent: storage
+            carrier: electricity
+        constraints:
+            energy_cap_max: 1000000  # kW
+            storage_cap_max: inf
+            storage_initial: 0.3
+            energy_cap_per_storage_cap_min: 0.0625
+            energy_eff: 0.75  # 
+            storage_loss: 0  # No loss over time assumed
+            lifetime: 25
+        costs:
+            monetary:
+                interest_rate: 0.10
+                storage_cap: 500  # € per kWh storage capacity
+                export: file=electricity_price_2022.csv:sell
+                om_annual: 16.7
+                om_prod: 0.0021
+
+
+    ACAES:
+        essentials:
+            name: 'A-CAES'
+            color: '#429EBD'
+            parent: storage
+            carrier: electricity
+        constraints:
+            energy_cap_max: 1000000  # kW
+            storage_cap_max: inf
+            storage_initial: 0.3
+            energy_cap_per_storage_cap_min: 0.0625
+            energy_eff: 0.70  # 
+            storage_loss: 0  # No loss over time assumed
+            lifetime: 40
+        costs:
+            monetary:
+                interest_rate: 0.10
+                storage_cap: 200  # € per kWh storage capacity
+                export: file=electricity_price_2022.csv:sell
+                om_annual: 16.7
+                om_prod: 0.0021
+
+                
+
+
+    methane_storage:
+        essentials:
+            name: 'Methane storage'
+            color: '#70503c'
+            parent: storage
+            carrier: methane
+        constraints:
+            energy_cap_max: inf  # kW
+            storage_cap_max: 10000000000 # kWh
+            storage_initial: 0.5
+            energy_eff: 1  # 0.95 * 0.95 = 0.9025 round trip efficiency
+            storage_loss: 0  # No loss over time assumed
+            lifetime: 25
+        costs:
+            monetary:
+                interest_rate: 0.10
+                storage_cap: 0.018  # EUR per kWh MeOH storage capacity

@@ -1,0 +1,114 @@
+##
+# TECHNOLOGY DEFINITIONS
+##
+tech_groups:
+    solar:
+        essentials:
+            parent: supply_plus
+
+
+
+techs:
+    wind1:
+        essentials:
+            name: 'Wind power'
+            color: '#2a9df4'
+            parent: supply_power_plus
+            carrier_out: electricity
+        constraints:
+            energy_prod: true
+            resource: file=windpower_feedin.csv:%
+            resource_unit: energy_per_cap  # kW
+            export_carrier: electricity
+            energy_cap_max: 30000
+            energy_cap_min: 5000
+            force_resource: true
+            lifetime: 20
+        costs:
+            monetary:
+                interest_rate: 0.10
+                energy_cap: 1900
+                #purchase: 8000000
+                om_annual: 14.29
+                export: file=electricity_price_2022.csv:sell
+
+    wind2:
+        essentials:
+            name: 'Wind power'
+            color: '#2a9df4'
+            parent: supply_power_plus
+            carrier_out: electricity
+        constraints:
+            resource: file=windpower_feedin.csv:%
+            resource_unit: energy_per_cap  # kW
+            export_carrier: electricity
+            energy_cap_max: 25000
+            energy_cap_min: 5000
+            lifetime: 20
+            force_resource: true
+        costs:
+            monetary:
+                interest_rate: 0.10
+                energy_cap: 1900
+                #purchase: 8000000
+                om_annual: 14.29
+                export: file=electricity_price_2022.csv:sell
+
+
+    ahp:
+        essentials:
+            name: 'Heat pump'
+            color: '#407f95'
+            primary_carrier_out: heat
+            parent: conversion_plus
+            carrier_in: electricity
+            carrier_out: heat
+        constraints:
+            energy_cap_equals: 1000
+            energy_eff: 0.95
+            lifetime: 25
+        costs:
+            monetary:
+                energy_cap: 700
+                interest_rate: 0.10
+                om_prod: 0.0004
+
+    pv:
+        essentials:
+            name: 'Photovoltaic power'
+            color: '#F9CF22'
+            parent: solar
+            carrier_out: electricity
+        constraints:
+            resource: file=pv.csv:%
+            resource_unit: energy_per_area  
+            export_carrier: electricity
+            #resource_area_max: 90000
+            lifetime: 20
+            force_resource: true
+        costs:
+            monetary:
+                interest_rate: 0.10
+                energy_cap: 716
+                export: file=electricity_price_2022.csv:sell
+
+    csp:
+        essentials:
+            name: 'Concentrating solar power'
+            color: '#FFC000'
+            parent: solar
+            carrier_out: heat
+        constraints:
+            resource: file=pv.csv:%
+            resource_unit: energy_per_area
+            energy_eff: 0.4
+            parasitic_eff: 0.9
+            #resource_area_max: 90000
+            lifetime: 20
+            force_resource: true
+        costs:
+            monetary:
+                interest_rate: 0.10
+                energy_cap: 1000
+                om_prod: 0.002
+                export: -0.0898

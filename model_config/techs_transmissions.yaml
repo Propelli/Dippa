@@ -1,0 +1,87 @@
+##
+# TECHNOLOGY DEFINITIONS
+##
+
+# Note: '-start' and '-end' is used in tutorial documentation only
+
+
+techs:
+
+##-DEMAND-##
+    # demand-start
+    demand_electricity:
+        essentials:
+            name: 'Electrical demand'
+            color: ' #ff0026'
+            parent: demand
+            carrier: electricity
+
+    demand_heat:
+        essentials:
+            name: 'Heat demand'
+            color: '#ff0026'
+            parent: demand
+            carrier: heat
+             
+    demand_hydrogen:
+        essentials:
+            name: 'Hydrogen demand'
+            color: '#ff0026'
+            parent: demand
+            carrier: hydrogen
+    demand_methane:
+        essentials:
+            name: 'Methane demand'
+            color: '#f99926'
+            parent: demand
+            carrier: methane
+    # demand-end
+
+##-DISTRIBUTION-##
+    # transmission-start
+    power_lines:
+        essentials:
+            name: 'Electrical power distribution'
+            color: '#6783E3'
+            parent: transmission
+            carrier: electricity
+        constraints:
+            energy_cap_max: 70000
+            energy_eff: 0.98
+            lifetime: 25
+
+    heat_pipes:
+        essentials:
+            name: 'District heat distribution'
+            color: '#823739'
+            parent: transmission
+            carrier: heat
+        constraints:
+            energy_cap_max: 40000
+            energy_eff: 0.9
+            lifetime: 25
+
+    CO2_line: #only for binding methane production to CO2 production this is not a real pipe
+        essentials:
+            name: 'CO2 distribution'
+            color: '#821139'
+            parent: transmission
+            carrier: co2
+        constraints:
+            energy_cap_max: 40000
+            energy_eff: 1
+            lifetime: 25
+    
+    methane_balance_line:   #only for binding methane production to CO2 production this is not a real pipe
+        essentials:
+            name: 'methane balance'
+            color: '#821999'
+            parent: transmission
+            carrier: methane
+        constraints:
+            energy_cap_max: 400000
+            energy_eff: 1
+            lifetime: 250
+       
+       
+    # transmission-end

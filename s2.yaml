@@ -1,0 +1,41 @@
+import:  # Import other files from paths relative to this file, or absolute paths
+    - 'model_config/techs_boiler.yaml'
+    - 'model_config/techs_electrolysis.yaml'
+    - 'model_config/techs_renewables.yaml'
+    - 'model_config/techs_storage.yaml'
+    - 'model_config/techs_supply.yaml'
+    - 'model_config/techs_transmissions.yaml'
+    - 'model_config/s2.yaml'
+    - 'scenarios.yaml'
+
+model:
+    name: Vierumäki 100% uusiutuvilla ilman akkuja
+
+    # What version of Calliope this model is intended for
+    calliope_version: 0.6.10
+
+    # Time series data path - can either be a path relative to this file, or an absolute path
+    timeseries_data_path: 'timeseries_data'
+
+    subset_time: ['2022-01-01', '2022-12-01']  # Subset of timesteps
+
+run:
+    mode: plan  # Choices: plan, operate
+
+    solver: gurobi
+
+    cyclic_storage: false
+
+    ensure_feasibility: true # Switching on unmet demand
+
+    bigM: 1e6 # setting the scale of unmet demand, which cannot be too high, otherwise the optimisation will not converge
+
+    objective_options:
+        cost_class: 
+            monetary: 1
+            #emissions: 0.1
+group_constraints:
+
+# A constraint group to enforce renewable generation
+
+            

@@ -1,0 +1,58 @@
+##
+# TECHNOLOGY DEFINITIONS
+##
+
+# Note: '-start' and '-end' is used in tutorial documentation only
+
+# supply_power_plus-start
+tech_groups:
+    supply_power_plus:
+        essentials:
+            parent: supply_plus
+            carrier: electricity
+# supply_power_plus-end
+
+techs:
+
+##-GRID SUPPLY-##
+    # supply-start
+    supply_grid_power:
+        essentials:
+            name: 'National grid import'
+            color: '#61346B'
+            parent: supply
+            carrier: electricity
+        constraints:
+            resource: inf
+            lifetime: 25
+        costs:
+            monetary:
+                interest_rate: 0.10
+                energy_cap: 15
+                om_con: file=electricity_price_2022.csv:price
+
+    supply_co2:
+        essentials:
+            name: 'Co2 supply'
+            color: '#C98AAD'
+            parent: supply
+            carrier: co2
+        constraints:
+            resource: inf
+            energy_cap_equals: 1920 #kg/h
+            lifetime: 25
+        costs:
+            monetary:
+                interest_rate: 0.10
+                energy_cap: 0
+                om_con: 0.100 # EUR/kg
+    supply_wood:
+        essentials:
+            name: 'wood import'
+            color: '#fde9e2'
+            parent: supply
+            carrier: wood
+        constraints:
+            resource: file=fuel.csv:fuel
+            lifetime: 25
+            om_con: 0.0289 # EUR/kWh https://pxdata.stat.fi/PxWeb/pxweb/fi/StatFin/StatFin__ehi/statfin_ehi_pxt_12gb.px/table/tableViewLayout1/

@@ -1,0 +1,124 @@
+locations:
+    # X1-start
+
+    s:
+    
+        coordinates: {lat: 61.1067 , lon: 25.94313}
+        techs:
+            demand_electricity:
+                constraints.resource: file=EL.csv
+            supply_grid_power:
+                costs.monetary.energy_cap: 100 # cost of transformers
+            supply_co2:
+            demand_methane:
+                constraints.resource: file=ch4.csv:co3
+    t:
+    
+       coordinates: {lat: 61.10807, lon: 25.91079}
+       available_area: 90000
+       techs:
+
+            demand_electricity:
+                constraints.resource: file=EL.csv
+            boilerEL:
+            pv:
+            demand_heat:
+                constraints.resource: file=KL.csv
+            supply_grid_power:
+                costs.monetary.energy_cap: 100 # cost of transformers
+  
+    
+    m:
+        coordinates: {lat: 61.11269 , lon: 25.92841}
+        techs:
+
+            demand_electricity:
+                constraints.resource: file=EL.csv
+
+    k:
+        coordinates: {lat: 61.10913 , lon: 25.93159}
+        techs:
+
+            demand_electricity:
+                constraints.resource: file=EL.csv
+
+    a:
+        coordinates: {lat: 61.10452 , lon: 25.92859}
+        techs:
+
+            demand_electricity:
+                constraints.resource: file=EL.csv
+
+    t1:
+        coordinates: {lat: 61.1606 , lon: 25.9199}
+        techs:
+            wind1:
+
+            electrolysis_AEC:
+            synthesis:
+
+
+            supply_grid_power:
+                costs.monetary.energy_cap: 100 # cost of transformers
+    
+    t2:
+        coordinates: {lat: 61.12041 , lon: 26.06118}
+        techs:
+            wind2:
+
+            electrolysis_AEC:
+
+
+            synthesis:
+
+            supply_grid_power:
+                costs.monetary.energy_cap: 100 # cost of transformers   
+
+    
+
+
+
+    # X1-end
+    # other-locs-start
+
+links:
+    # links-start
+    t1,t:
+        techs:
+            power_lines:
+            heat_pipes:
+            CO2_line:
+            methane_balance_line:  
+
+    t2,s:
+        techs:
+            power_lines:
+            heat_pipes:
+            CO2_line:
+            methane_balance_line:  
+
+    s,k:
+        techs:
+            power_lines:
+            heat_pipes:
+            CO2_line:
+            methane_balance_line:  
+    t,m:
+        techs:
+            power_lines:
+            heat_pipes:
+            CO2_line:
+            methane_balance_line:  
+        
+    m,k:
+        techs:
+            power_lines:
+            heat_pipes:
+            CO2_line:
+            methane_balance_line:  
+    k,a:
+        techs:
+            power_lines:
+            heat_pipes:
+
+

@@ -1,0 +1,48 @@
+##
+# TECHNOLOGY DEFINITIONS
+##
+
+
+techs:
+
+# Conversion
+    # boiler-start
+    boiler:
+        essentials:
+            name: 'Sawdust boiler'
+            color: '#8b5d33'
+            parent: conversion
+            carrier_out: heat
+            carrier_in: wood
+        constraints:
+            energy_cap_max: 13000
+            energy_eff: 0.85
+            lifetime: 25
+        costs:
+            monetary:
+                interest_rate: 0.10
+                om_con: 0.004  # .4p/kWh
+
+    boilerEL:
+        essentials:
+            name: 'Electric boiler'
+            color: '#8b5d33'
+            parent: conversion
+            carrier_out: heat
+            carrier_in: electricity
+        constraints:
+            energy_cap_max: 30000
+            energy_eff: 0.95
+            lifetime: 25
+        costs:
+            monetary:
+                interest_rate: 0.10
+                energy_cap: 700
+                om_con: 0.004  # .4p/kWh
+                export: -0.0898
+
+              
+
+   
+
+                

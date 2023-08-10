@@ -1,0 +1,81 @@
+locations:
+    # X1-start
+
+    s:
+    
+       coordinates: {lat: 61.1067 , lon: 25.94313}
+       techs:
+            boiler:
+            supply_wood:
+            supply_grid_power:
+                costs.monetary.energy_cap: 100 # cost of transformers
+            demand_electricity:
+                constraints.resource: file=EL.csv
+           
+    t:
+    
+       coordinates: {lat: 61.10807, lon: 25.91079}
+       techs:
+            
+            demand_electricity:
+                constraints.resource: file=EL.csv
+            demand_heat:
+                constraints.resource: file=KL.csv
+            supply_grid_power:
+                costs.monetary.energy_cap: 100 # cost of transformers
+
+
+
+    
+    m:
+        coordinates: {lat: 61.11269 , lon: 25.92841}
+        techs:
+            supply_grid_power:
+                costs.monetary.energy_cap: 100 # cost of transformers
+            demand_electricity:
+                constraints.resource: file=EL.csv
+
+    k:
+        coordinates: {lat: 61.10913 , lon: 25.93159}
+        techs:
+            supply_grid_power:
+                costs.monetary.energy_cap: 100 # cost of transformers            
+            demand_electricity:
+                constraints.resource: file=EL.csv
+
+    a:
+        coordinates: {lat: 61.10452 , lon: 25.92859}
+        techs:
+            supply_grid_power:
+                costs.monetary.energy_cap: 100 # cost of transformers           
+            demand_electricity:
+                constraints.resource: file=EL.csv
+
+
+
+    
+
+
+
+    # X1-end
+    # other-locs-start
+
+links:
+    # links-start
+    s,k:
+        techs:
+            power_lines:
+            heat_pipes:
+    t,m:
+        techs:
+            power_lines:
+            heat_pipes:
+        
+    m,k:
+        techs:
+            power_lines:
+            heat_pipes:
+    k,a:
+        techs:
+            power_lines:
+            heat_pipes:
